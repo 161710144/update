@@ -43,7 +43,7 @@
 
 			  		<div class="form-group {{ $errors->has('gaji') ? ' has-error' : '' }}">
 			  			<label class="control-label">Gaji</label>	
-			  			<input type="number" name="gaji" value="{{ $low->gaji }}" class="form-control"  required>
+			  			<input type="number_format" name="gaji" value="{{ $low->gaji }}" class="form-control"  required>
 			  			@if ($errors->has('gaji'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('gaji') }}</strong>
@@ -53,20 +53,10 @@
 
 			  		<div class="form-group {{ $errors->has('deskripsi_iklan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Deskripsi iklan</label>	
-			  			<textarea type="text" name="deskripsi_iklan" value="{{ $low->deskripsi_iklan }}" class="form-control" cols="30" rows="20"  required></textarea> 
+			  			<textarea type="text" name="deskripsi_iklan" value="{{ $low->deskripsi_iklan }}" class="ckeditor" required></textarea> 
 			  			@if ($errors->has('deskripsi_iklan'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('deskripsi_iklan') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-			  		
-			  		<div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
-			  			<label class="control-label">Status</label>	
-			  			<input type="text" name="status" value="{{ $low->status }}" class="form-control"  required>
-			  			@if ($errors->has('status'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('status') }}</strong>
                             </span>
                         @endif
 			  		</div>
@@ -100,7 +90,7 @@
 			  		</div>
 
 			  		<div class="form-group">
-			  			<button type="submit" class="btn btn-primary">Simpan</button>
+			  			<button type="submit" class="btn btn-primary">Save</button>
 			  		</div>
 			  	</form>
 			  </div>

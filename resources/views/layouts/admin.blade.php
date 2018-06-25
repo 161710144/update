@@ -13,7 +13,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>LokerBandung</title>
+    <title>JobRed</title>
     <link href="{{ asset('Bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Fontfaces CSS-->
@@ -90,7 +90,8 @@
 
     <!-- Main JS-->
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    
 </body>
 
 </html>

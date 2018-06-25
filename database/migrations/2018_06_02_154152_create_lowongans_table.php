@@ -19,8 +19,9 @@ class CreateLowongansTable extends Migration
             $table->date('tgl_mulai');
             $table->string('lokasi');
             $table->integer('gaji');
-            $table->string('deskripsi_iklan');
-            $table->string('status');  
+            $table->text('deskripsi_iklan');
+            $table->string('status');
+            $table->unsignedInteger('user_id');  
             $table->unsignedInteger('pers_id');
             $table->foreign('pers_id')->references('id')->on('perusahaans')->onDelete('cascade');  
             $table->unsignedInteger('kategori_id');

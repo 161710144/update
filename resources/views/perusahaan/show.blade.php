@@ -4,19 +4,25 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Show Data Perusahaan  
-			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Kembali</a>
+			  <div class="panel-heading">View Perusahaan  
+			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Back</a>
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-        			<div class="form-group">
-			  			<label class="control-label">Logo</label>	
-			  			<input type="img" name="logo" class="form-control" value="{{ $per->logo }}"  readonly>
+			  		<div class="form-group">
+			  			<label class="control-label">Perusahaan</label>	
+			  			<input type="text" name="nama_pers" class="form-control" value="{{ $per->nama_pers }}"  readonly>
+			  		</div>
+
+			  		<div class="form-group">
+			  			<label class="control-label">Logo</label>
+			  			<br>	
+			  			<img src="{{ asset('assets/img/logopers/'.$per->logo) }}" style="max-height:85px;max-width:80px;margin-top:9px;">
 			  		</div>
 
         			<div class="form-group">
 			  			<label class="control-label">Deskripsi</label>	
-			  			<input type="text" name="deskripsi" class="form-control" value="{{ $per->deskripsi }}"  readonly>
+			  			<textarea type="text" name="deskripsi" class="ckeditor" cols="30" rows="20" readonly>{!! $per->deskripsi !!}</textarea>
 			  		</div>
 
 			  		<div class="form-group">

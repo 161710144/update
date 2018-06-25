@@ -20,11 +20,17 @@ class UserSeeder extends Seeder
         $adminRole->display_name = "Admin";
         $adminRole->save();
 
-        //membuat role member
-		$memberRole = new Role();
-        $memberRole->name = "member";
-        $memberRole->display_name = "Member";
-        $memberRole->save();
+        //membuat role perusahaan
+		$perusahaanRole = new Role();
+        $perusahaanRole->name = "perusahaan";
+        $perusahaanRole->display_name = "Perusahaan";
+        $perusahaanRole->save();
+
+        //membuat role pelamar
+        $pelamarRole = new Role();
+        $pelamarRole->name = "pelamar";
+        $pelamarRole->display_name = "Pelamar";
+        $pelamarRole->save();
 
         //membuat sample admin;
         $admin = new User();
@@ -34,13 +40,21 @@ class UserSeeder extends Seeder
         $admin->save();
         $admin->attachRole($adminRole);
 
-        //membuat sample member
-		$member = new User();
-        $member->name = "sample Member";
-        $member->email = "member@gmail.com";
-        $member->password = bcrypt('rahasia');
-        $member->save();
-        $member->attachRole($memberRole);
+        //membuat sample perusahaan
+		$perusahaan = new User();
+        $perusahaan->name = "sample Perusahaan";
+        $perusahaan->email = "perusahaan@gmail.com";
+        $perusahaan->password = bcrypt('rahasia');
+        $perusahaan->save();
+        $perusahaan->attachRole($perusahaanRole);
+
+        //membuat sample pelamar
+        $pelamar = new User();
+        $pelamar->name = "sample Pelamar";
+        $pelamar->email = "pelamar@gmail.com";
+        $pelamar->password = bcrypt('rahasia');
+        $pelamar->save();
+        $pelamar->attachRole($pelamarRole);
 
     }
 }

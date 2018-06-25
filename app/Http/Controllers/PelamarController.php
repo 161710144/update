@@ -6,6 +6,8 @@ use Session;
 use App\Pelamar;
 use App\User;
 use App\Lowongan;
+use File;
+use Auth;
 use Illuminate\Http\Request;
 
 class PelamarController extends Controller
@@ -43,16 +45,14 @@ class PelamarController extends Controller
     {
         $this->validate($request,[
             'telepon' => 'required|',
-            'pesan' => 'required|max:225',
-            'file_cv' => 'required|',
-            'user_id' => 'required|',
-            'low_id' => 'required|'
+            'pesan' => 'required|min:30',
+            'file_cv' => 'required|'
         ]);
         $pel = new Pelamar;
         $pel->telepon = $request->telepon;
         $pel->pesan = $request->pesan;
         $pel->file_cv = $request->file_cv;
-        $pel->user_id = $request->user_id;
+        $pel->user_id = Auth::user(0)->id;
         $pel->low_id = $request->low_id;
         $pel->save();
         Session::flash("flash_notification", [
@@ -109,15 +109,15 @@ class PelamarController extends Controller
     {
         $this->validate($request,[
             'telepon' => 'required|max:13',
-            'pesan' => 'required|',
-            'file_cv' => 'required|',
+            'pesan' => 'required|min:30',
+        
             'user_id' => 'required|',
             'low_id' => 'required|'
         ]);
         $pel = Pelamar::findOrFail($id);
         $pel->telepon = $request->telepon;
         $pel->pesan = $request->pesan;
-        $pel->file_cv = $request->file_cv;
+        
         $pel->user_id = $request->user_id;
         $pel->low_id = $request->low_id;
         $pel->save();
@@ -125,6 +125,25 @@ class PelamarController extends Controller
         "level"=>"success",
         "message"=>"Berhasil menyimpan <b>$pel->telepon</b>"
         ]);
+        if ($request->hasFile('file_cv')){
+            $file = $request->file('file_cv');
+            $destinationPath = public_path().'/assets/cv/';
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $uploadSucces = $file->move($destinationPath, $filename);
+
+            //hapus foto lama
+            if ($pel->file_cv){
+                $old_file_cv = $pel->file_cv;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/cv/' . DIRECTORY_SEPARATOR .$pel->file_cv;
+                try{
+                    File::delete($filepath);
+                }catch (FileNotFoundException $p){
+                    //file sudah dihapus
+                }
+            }
+            $pel->file_cv = $filename;
+        }
+        $pel->save();
         return redirect()->route('pelamar.index');
     }
 

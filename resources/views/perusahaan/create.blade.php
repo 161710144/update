@@ -22,7 +22,7 @@
 			  		</div>
 			  		<div class="form-group {{ $errors->has('logo') ? ' has-error' : '' }}">
 			  			<label class="control-label">Logo</label>	
-			  			<input type="file" name="logo" accept="image/*"  required>
+			  			<input type="file" name="logo" accept="image/*" required>
 			  			@if ($errors->has('logo'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('logo') }}</strong>
@@ -31,7 +31,7 @@
 			  		</div>
 			  		<div class="form-group {{ $errors->has('deskripsi') ? ' has-error' : '' }}">
 			  			<label class="control-label">Deskripsi</label>	
-			  			<textarea type="textarea" name="deskripsi" class="form-control" cols="30" rows="20"  required></textarea> 
+			  			<textarea type="textarea" name="deskripsi" class="ckeditor" required></textarea> 
 			  			@if ($errors->has('deskripsi'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('deskripsi') }}</strong>
@@ -49,22 +49,9 @@
                         @endif
 			  		</div>
 			  		
-			  		<div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Username</label>	
-			  			<select name="user_id" class="form-control">
-			  				@foreach($per as $data)
-			  				<option value="{{ $data->id }}">{{ $data->name }}</option>
-			  				@endforeach
-			  			</select>
-			  			@if ($errors->has('user_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('user_id') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
 			  		
 			  		<div class="form-group">
-			  			<button type="submit" class="btn btn-primary">Tambah</button>
+			  			<button type="submit" class="btn btn-primary">Create</button>
 			  		</div>
 			  	</form>
 			  </div>

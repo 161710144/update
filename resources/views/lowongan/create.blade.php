@@ -61,21 +61,10 @@
 
 			  		<div class="form-group {{ $errors->has('deskripsi_iklan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Deskripsi iklan</label>	
-			  			<textarea type="text" name="deskripsi_iklan" class="form-control" cols="30" rows="20" required></textarea> 
+			  			<textarea type="text" name="deskripsi_iklan" class="ckeditor" required></textarea> 
 			  			@if ($errors->has('deskripsi_iklan'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('deskripsi_iklan') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-
-			  		<div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
-			  			<label class="control-label">Status</label>	
-			  			<input type="number format" name="status" class="form-control"  required>
-
-			  			@if ($errors->has('status'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('status') }}</strong>
                             </span>
                         @endif
 			  		</div>

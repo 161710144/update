@@ -6,6 +6,7 @@ use Session;
 use App\Kategori_lowongan;
 use App\Perusahaan;
 use App\Lowongan;
+use Auth;
 use Illuminate\Http\Request;
 
 class LowonganController extends Controller
@@ -17,8 +18,9 @@ class LowonganController extends Controller
      */
     public function index()
     {
-        $low = Lowongan::with('Perusahaan','Kategori')->get();
-        return view('lowongan.index',compact('low'));
+        $low = Lowongan::with('Perusahaan','Kategori')->where('user_id', Auth::user()->id)->get(); 
+        $low_admin = Lowongan::with('Perusahaan','Kategori')->get();
+        return view('lowongan.index',compact('low','low_admin'));
     }
 
     /**
@@ -42,12 +44,11 @@ class LowonganController extends Controller
     public function store(Request $request)
     {
          $this->validate($request,[
-            'nama_low' => 'required|max:225',
+            'nama_low' => 'required|max:25',
             'tgl_mulai' => 'required|',
-            'lokasi' => 'required|max:225',
+            'lokasi' => 'required|',
             'gaji' => 'required|',
-            'deskripsi_iklan' => 'required|max:225',
-            'status' => 'required|',
+            'deskripsi_iklan' => 'required|',
             'pers_id' => 'required|',
             'kategori_id' => 'required|'
         ]);
@@ -57,7 +58,8 @@ class LowonganController extends Controller
         $low->lokasi = $request->lokasi;
         $low->gaji = $request->gaji;
         $low->deskripsi_iklan = $request->deskripsi_iklan;
-        $low->status = $request->status;
+        $low->status = 0;
+        $low->user_id = Auth::user()->id;
         $low->pers_id = $request->pers_id;
         $low->kategori_id = $request->kategori_id;
         $low->save();
@@ -107,12 +109,11 @@ class LowonganController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nama_low' => 'required|max:225',
+            'nama_low' => 'required|max:25',
             'tgl_mulai' => 'required|',
-            'lokasi' => 'required|max:255',
+            'lokasi' => 'required|',
             'gaji' => 'required|',
-            'deskripsi_iklan' => 'required|max:225',
-            'status' => 'required|',
+            'deskripsi_iklan' => 'required|',
             'pers_id' => 'required|',
             'kategori_id' => 'required|'
         ]);
@@ -122,7 +123,8 @@ class LowonganController extends Controller
         $low->lokasi = $request->lokasi;
         $low->gaji = $request->gaji;
         $low->deskripsi_iklan = $request->deskripsi_iklan;
-        $low->status = $request->status;
+        $low->status = 0;
+        $low->user_id = Auth::user()->id;
         $low->pers_id = $request->pers_id;
         $low->kategori_id = $request->kategori_id;
         $low->save();
@@ -147,6 +149,14 @@ class LowonganController extends Controller
         "level"=>"success",
         "message"=>"Data Berhasil dihapus"
         ]);
+        return redirect()->route('lowongan.index');
+    }
+
+    public function konfirmasi_lowongan($id)
+    {
+        $low= Lowongan::find($id);
+        $low->status = 1;
+        $low->save();
         return redirect()->route('lowongan.index');
     }
 }

@@ -22,7 +22,7 @@
 			  		</div>
 			  		<div class="form-group {{ $errors->has('pesan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Pesan</label>	
-			  			<input type="text" name="pesan" class="form-control"  required>
+			  			<textarea type="text" name="pesan" class="ckeditor"  required> </textarea>
 			  			@if ($errors->has('pesan'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('pesan') }}</strong>

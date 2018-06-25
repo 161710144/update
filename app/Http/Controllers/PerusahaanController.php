@@ -6,6 +6,7 @@ use App\Perusahaan;
 use App\User;
 use Session;
 use File;
+use Auth;
 use Illuminate\Http\Request;
 
 class PerusahaanController extends Controller
@@ -17,7 +18,7 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        $per = Perusahaan::with('User')->get();
+        $per = Perusahaan::with('User')->where('user_id', Auth::user()->id)->get();
         return view('perusahaan.index',compact('per'));
     }
 
@@ -41,22 +42,21 @@ class PerusahaanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nama_pers' => 'required|max:45',
+            'nama_pers' => 'required|max:25',
             'logo' => 'required|',
-            'deskripsi' => 'required|max:255',
-            'telepon' => 'required|',
-            'user_id' => 'required|'
+            'deskripsi' => 'required|',
+            'telepon' => 'required|max:13'
         ]);
         $per = new Perusahaan;
         $per->nama_pers = $request->nama_pers;
         $per->logo = $request->logo;
         $per->deskripsi = $request->deskripsi;
         $per->telepon = $request->telepon;
-        $per->user_id = $request->user_id;    
+        $per->user_id = Auth::user()->id;    
         $per->save();
         Session::flash("flash_notification", [
         "level"=>"success",
-        "message"=>"Berhasil menyimpan <b>$per->logo</b>"
+        "message"=>"Berhasil menyimpan <b>$per->nama_pers</b>"
         ]);
         // upload
         if ($request->hasFile('logo')) {
@@ -107,40 +107,42 @@ class PerusahaanController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nama_pers' => 'required|max:191',
-            'deskripsi' => 'required|max:255',
-            'telepon' => 'required|',
-            'user_id' => 'required|'
+            'nama_pers' => 'required|max:25',
+            'logo' => 'required|',
+            'deskripsi' => 'required|',
+            'telepon' => 'required|max:13'
         ]);
         $per = Perusahaan::findOrFail($id);
         $per->nama_pers = $request->nama_pers;
+        $per->logo = $request->logo;
         $per->deskripsi = $request->deskripsi;
         $per->telepon = $request->telepon;
-        $per->user_id = $request->user_id;
+        $per->user_id = Auth::user()->id;
         $per->save();
         Session::flash("flash_notification", [
         "level"=>"success",
-        "message"=>"Berhasil mengedit <b>$per->logo</b>"
+        "message"=>"Berhasil mengedit <b>$per->nama_pers</b>"
         ]);
         //edit upload foto
-        // if ($request->hasFile('logo')){
-        //     $file = $request->file('logo');
-        //     $destinationPath = public_path().'/assets/img/logopers/';
-        //     $filename = str_random(6).'_'.$file->getClientOriginalName();
-        //     $uploadSucces = $file->move($destinationPath, $filename);
+        if ($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $destinationPath = public_path().'/assets/img/logopers/';
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $uploadSucces = $file->move($destinationPath, $filename);
 
-        //     //hapus foto lama
-        //     if ($per->logo){
-        //         $old_logo = $per->logo;
-        //         $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/img/logopers/' . DIRECTORY_SEPARATOR .$per->logo;
-        //         try{
-        //             File::delete($filepath);
-        //         }catch (FileNotFoundException $p){
-        //             //file sudah dihapus
-        //         }
-        //     }
-        //     $per->logo = $filename;
-        // }
+            //hapus foto lama
+            if ($per->logo){
+                $old_logo = $per->logo;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . '/assets/img/logopers/' . DIRECTORY_SEPARATOR .$per->logo;
+                try{
+                    File::delete($filepath);
+                }catch (FileNotFoundException $p){
+                    //file sudah dihapus
+                }
+            }
+            $per->logo = $filename;
+        }
+        $per->save();
         return redirect()->route('perusahaan.index');
     }
 

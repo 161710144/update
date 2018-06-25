@@ -33,11 +33,14 @@
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama_pers }}</td>
 				    	<td><img src="{{ asset('assets/img/logopers/'.$data->logo) }}" style="max-height:70px;max-width:70px;margin-top:7px;" /></td>
-				    	<td>{{ $data->deskripsi }}</td>
+				    	<td>{!! str_limit($data->deskripsi, 25) !!}</td>
 				    	<td>{{ $data->telepon }}</td>
 				    	<td><p>{{ $data->User->name }}</p></td>
 <td>
 	<a class="btn btn-warning" href="{{ route('perusahaan.edit',$data->id) }}"><i class="fas fa-edit"></i>Edit</a>
+</td>
+<td>
+	<a class="btn btn-primary" href="{{ route('perusahaan.show',$data->id) }}"><i class="fas fa-eye"></i>View</a>
 </td>
 <td>
 	<form method="post" action="{{ route('perusahaan.destroy',$data->id) }}">

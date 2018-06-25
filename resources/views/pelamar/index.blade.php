@@ -32,7 +32,7 @@
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->telepon }}</td>
-				    	<td>{{ $data->pesan }}</td>
+				    	<td>{!! str_limit($data->pesan, 25) !!}</td>
 				    	<td><embed src="{{ asset('assets/cv/'.$data->file_cv) }}" type="application/pdf" width="80%" height="150px" /></td>
 				    	<td><p>{{ $data->User->email }}</p></td>
 				    	<td><p>{{ $data->Lowongan->nama_low }}</p></td>

@@ -8,30 +8,52 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+
                         <li class="active has-sub">
-                            <a class="js-arrow" href="http://localhost:8000/home">
-                                <i class="fas fa-th-large"></i>Beranda</a>
+                            <a class="js-arrow" href="{{url('/home')}}"><i class="fas fa-th-large"></i>Beranda</a>
                         </li>
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="http://localhost:8000/admin/kategori">
-                                <i class="fas fa-tachometer-alt"></i>Kategori</a>
+                        @role('admin')
+                        <li>
+                            <a class="js-arrow" href="{{route('kategori.index')}}">
+                                <i class="fas fa-bullseye"></i>Kategori</a>
                         </li>
                         <li>
-                            <a href="http://localhost:8000/admin/perusahaan">
-                                <i class="fas fa-chart-bar"></i>Perusahaan</a>
+                            <a href="{{route('perusahaan.index')}}">
+                                <i class="fas fa-circle"></i>Perusahaan</a>
                         </li>
                         <li>
-                            <a href="http://localhost:8000/admin/lowongan">
-                                <i class="fas fa-desktop"></i>Lowongan</a>
+                            <a href="{{route('lowongan.index')}}">
+                                <i class="fas fa-suitcase"></i>Lowongan</a>
                         </li>
                         <li>
-                            <a href="http://localhost:8000/admin/pelamar">
+                            <a href="{{route('pelamar.index')}}">
                                 <i class="fas fa-copy"></i>Pelamar</a>
                         </li>
+                        @endrole
+                        @role('perusahaan')
                         <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                            <a href="{{route('perusahaan.index')}}">
+                                <i class="fas fa-circle"></i>Perusahaan</a>
                         </li>
+                        
+                         <li>
+                            <a href="{{route('lowongan.index')}}">
+                                <i class="fas fa-suitcase"></i>Lowongan</a>
+                            </li>
+                            <li>
+                            <a href="{{route('pelamar.index')}}">
+                                <i class="fas fa-copy"></i>Pelamar</a>
+                        </li>
+                        @endrole
+                        @role('pelamar')
+                        <li>
+                            <a href="{{route('pelamar.index')}}">
+                                <i class="fas fa-copy"></i>Pelamar</a>
+                        </li>
+                        @endrole
+
+                        <li>
+
                         
                             </ul>
                         </li>
