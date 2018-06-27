@@ -30,7 +30,7 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        $per = Perusahaan::all();
+        $per = Perusahaan::where('user_id',Auth::user()->id)->get();
         $kat = Kategori_lowongan::all();
         return view('lowongan.create',compact('per','kat'));
     }
@@ -76,7 +76,7 @@ class LowonganController extends Controller
      * @param  \App\Lowongan  $lowongan
      * @return \Illuminate\Http\Response
      */
-    public function show(Lowongan $lowongan)
+    public function show($id)
     {
         $low= Lowongan::findOrFail($id);
         return view('lowongan.show',compact('low'));

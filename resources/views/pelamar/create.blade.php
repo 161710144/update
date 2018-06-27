@@ -29,6 +29,8 @@
                             </span>
                         @endif
 			  		</div>
+			  		<p>Pembuatan Pesan minimal : 25</p>
+			  		<br>
 			  		<div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
 			  			<label class="control-label">FileCV</label>	
 			  			<input type="file" name="file_cv"  required>

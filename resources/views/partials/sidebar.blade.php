@@ -48,7 +48,7 @@
                         @role('pelamar')
                         <li>
                             <a href="{{route('pelamar.index')}}">
-                                <i class="fas fa-copy"></i>Pelamar</a>
+                                <i class="fas fa-copy"></i>Resume</a>
                         </li>
                         @endrole
 

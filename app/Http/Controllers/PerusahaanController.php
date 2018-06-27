@@ -19,7 +19,8 @@ class PerusahaanController extends Controller
     public function index()
     {
         $per = Perusahaan::with('User')->where('user_id', Auth::user()->id)->get();
-        return view('perusahaan.index',compact('per'));
+        $per_admin = Perusahaan::with('User')->get();
+        return view('perusahaan.index',compact('per','per_admin'));
     }
 
     /**
@@ -44,8 +45,8 @@ class PerusahaanController extends Controller
         $this->validate($request,[
             'nama_pers' => 'required|max:25',
             'logo' => 'required|',
-            'deskripsi' => 'required|',
-            'telepon' => 'required|max:13'
+            'deskripsi' => 'required|min:50',
+            'telepon' => 'required|max:13|unique:perusahaans'
         ]);
         $per = new Perusahaan;
         $per->nama_pers = $request->nama_pers;
@@ -109,7 +110,7 @@ class PerusahaanController extends Controller
         $this->validate($request,[
             'nama_pers' => 'required|max:25',
             'logo' => 'required|',
-            'deskripsi' => 'required|',
+            'deskripsi' => 'required|min:50',
             'telepon' => 'required|max:13'
         ]);
         $per = Perusahaan::findOrFail($id);

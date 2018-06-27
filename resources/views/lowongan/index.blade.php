@@ -4,12 +4,10 @@
 	<div class="row">
 	<div class="container">
 	<div class="col-md-16">
-			<div class="panel panel-success">
+			  <div class="panel panel-success">
+			  @role('perusahaan')			  
 			  <div class="panel-heading"><a href="{{ route('lowongan.create') }}" class="au-btn au-btn-icon au-btn--green au-btn--small"> <i class="zmdi zmdi-plus"></i> Add</a>
-			  	
 			  	</div>
-			  
-			  @role('perusahaan')
 			  <div class="row">
      			<div class="col-md-12">
                  <!-- DATA TABLE-->
@@ -135,7 +133,9 @@
 							<a class="btn btn-primary" href="{{ url('konfirmasilowongan',$data->id) }}"><i class="fas fa-check"></i>Konfirmasi</a>
 						</td>
 						@endif
-						
+						 <td>
+                    		<a class="btn btn-primary" href="{{ route('lowongan.show',$data->id) }}"><i class="fas fa-eye"></i>View</a>
+                  		</td>
 						<td>
 							<form method="post" action="{{ route('lowongan.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
