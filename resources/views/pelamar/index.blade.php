@@ -17,11 +17,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Telepon</th>
-                  <th>Pesan</th>
                   <th>FileCV</th>
-                  <th>Username</th>
-                  <th>Lowongan</th>
                   <th colspan="3">Action</th>
                 </tr>
               </thead>
@@ -31,16 +27,8 @@
                 @foreach($pel as $data)
                 <tr>
                   <td>{{ $no++ }}</td>
-                  <td>{{ $data->telepon }}</td>
-                  <td>{!! str_limit($data->pesan, 25) !!}</td>
                   <td>
                     <embed src="{{ asset('assets/cv/'.$data->file_cv) }}" type="application/pdf" width="80%" height="150px" />
-                  </td>
-                  <td>
-                    <p>{{ $data->User->email }}</p>
-                  </td>
-                  <td>
-                    <p>{{ $data->Lowongan->nama_low }}</p>
                   </td>
                   <td>
                     <a class="btn btn-warning" href="{{ route('pelamar.edit',$data->id) }}"><i class="fas fa-edit"></i>Edit</a>

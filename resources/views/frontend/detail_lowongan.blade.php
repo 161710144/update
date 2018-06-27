@@ -205,7 +205,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('pelamar.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('kirimlamaran') }}" method="post" enctype="multipart/form-data">
                {{ csrf_field() }}
                <input type="hidden" name="low_id" value="{{ $lowongan->id }}">
                <div class="form-group {{ $errors->has('telepon') ? ' has-error' : '' }}">
@@ -227,13 +227,15 @@
                         @endif
                </div>
                <div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
-                  <label class="control-label"><button class="btn btn-primary"> FileCV</button></label>  
-                  <input type="file" name="file_cv" class="form-control" required>
-                  @if ($errors->has('file_cv'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('file_cv') }}</strong>
-                            </span>
-                        @endif
+                  <label class="control-label">FileCV</label>
+                  <br>
+                  @php
+                  $file_cv = App\Pelamar::all();
+                  @endphp
+                  @foreach( $file_cv as $data)  
+               <input type="radio" value="{{ $data->id }}" name="file_cv" required>{{ $data->file_cv }}
+               <br>
+                  @endforeach
                </div>
       </div>
       <div class="modal-footer">

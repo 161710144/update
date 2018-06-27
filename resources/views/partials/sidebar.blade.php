@@ -26,8 +26,8 @@
                                 <i class="fas fa-suitcase"></i>Lowongan</a>
                         </li>
                         <li>
-                            <a href="{{route('pelamar.index')}}">
-                                <i class="fas fa-copy"></i>Pelamar</a>
+                            <a href="{{route('lamaran.index')}}">
+                                <i class="fas fa-copy"></i>Lamaran</a>
                         </li>
                         @endrole
                         @role('perusahaan')
@@ -41,14 +41,19 @@
                                 <i class="fas fa-suitcase"></i>Lowongan</a>
                             </li>
                             <li>
-                            <a href="{{route('pelamar.index')}}">
-                                <i class="fas fa-copy"></i>Pelamar</a>
+                            <a href="{{route('lamaran.index')}}">
+                                <i class="fas fa-copy"></i>Lamaran</a>
                         </li>
+                       
                         @endrole
                         @role('pelamar')
                         <li>
                             <a href="{{route('pelamar.index')}}">
                                 <i class="fas fa-copy"></i>Resume</a>
+                        </li>
+                         <li>
+                        <a href="{{route('lamaran.index')}}">
+                                <i class="fas fa-copy"></i>Lamaran terkirim</a>
                         </li>
                         @endrole
 

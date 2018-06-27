@@ -19,7 +19,7 @@ class PelamarController extends Controller
      */
     public function index()
     {
-        $pel = Pelamar::with('User','Lowongan')->where('user_id', Auth::user()->id)->get();
+        $pel = Pelamar::where('user_id', Auth::user()->id)->get();
         return view('pelamar.index',compact('pel'));
     }
 
@@ -44,16 +44,12 @@ class PelamarController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'telepon' => 'required|unique:pelamars|',
-            'pesan' => 'required|min:25',
-            'file_cv' => 'required|'
+            'file_cv' => 'required|max:10000|mimes:doc,docx,pdf'
         ]);
         $pel = new Pelamar;
-        $pel->telepon = $request->telepon;
-        $pel->pesan = $request->pesan;
         $pel->file_cv = $request->file_cv;
         $pel->user_id = Auth::user()->id;
-        $pel->low_id = $request->low_id;
+        
         $pel->save();
         Session::flash("flash_notification", [
         "level"=>"success",
@@ -108,18 +104,12 @@ class PelamarController extends Controller
     public function update(Request $request,$id)
     {
         $this->validate($request,[
-            'telepon' => 'required|',
-            'pesan' => 'required|min:25',
         
-            'user_id' => 'required|',
-            'low_id' => 'required|'
+            'file_cv' => 'required|max:10000|mimes:doc,docx,pdf'
         ]);
         $pel = Pelamar::findOrFail($id);
-        $pel->telepon = $request->telepon;
-        $pel->pesan = $request->pesan;
-        
-        $pel->user_id = $request->user_id;
-        $pel->low_id = $request->low_id;
+        $pel->file_cv = $request->file_cv;
+        $pel->user_id = Auth::user()->id;
         $pel->save();
         Session::flash("flash_notification", [
         "level"=>"success",
