@@ -60,7 +60,7 @@
                             </span>
                         @endif
 			  		</div>
-			  		
+			  		<p>Buat deskripsi min : 30</p>
 			  		<div class="form-group {{ $errors->has('pers_id') ? ' has-error' : '' }}">
 			  			<label class="control-label">Perusahaan</label>	
 			  			<select name="pers_id" class="form-control">

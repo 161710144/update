@@ -122,56 +122,25 @@
                   <aside>
                      <div class="sidebar">
                         <div class="box">
-                           <h2 class="small-title">Job Details</h2>
+                           <h2 class="small-title">Detail Lowongan</h2>
                            <ul class="detail-list">
                               <li>
-                                 <a href="#">Job Id</a>
-                                 <span class="type-posts">Jb1246789</span>
+                                 <a href="#">Lowongan id</a>
+                                 <span class="type-posts">{{ $lowongan->id}}</span>
                               </li>
                               <li>
-                                 <a href="#">Location</a>
-                                 <span class="type-posts">New York, NY</span>
+                                 <a href="#">Lokasi</a>
+                                 <span class="type-posts">{{ $lowongan->lokasi }}</span>
                               </li>
                               <li>
-                                 <a href="#">Company</a>
-                                 <span class="type-posts">LemonKids LLC</span>
+                                 <a href="#">Perusahaan</a>
+                                 <span class="type-posts">{{ $lowongan->Perusahaan->nama_pers }}</span>
                               </li>
                               <li>
-                                 <a href="#">Type</a>
-                                 <span class="type-posts">Private</span>
+                                 <a href="#">Kategori</a>
+                                 <span class="type-posts">{{ $lowongan->Kategori->nama_kategori}}</span>
                               </li>
-                              <li>
-                                 <a href="#">Employment Status</a>
-                                 <span class="type-posts">Permanent</span>
-                              </li>
-                              <li>
-                                 <a href="#">Employment Type</a>
-                                 <span class="type-posts">Manager</span>
-                              </li>
-                              <li>
-                                 <a href="#">Positions</a>
-                                 <span class="type-posts">5</span>
-                              </li>
-                              <li>
-                                 <a href="#">Career Level</a>
-                                 <span class="type-posts">Experience</span>
-                              </li>
-                              <li>
-                                 <a href="#">Experience</a>
-                                 <span class="type-posts">3 Years</span>
-                              </li>
-                              <li>
-                                 <a href="#">Gender</a>
-                                 <span class="type-posts">Male</span>
-                              </li>
-                              <li>
-                                 <a href="#">Nationality</a>
-                                 <span class="type-posts">United States</span>
-                              </li>
-                              <li>
-                                 <a href="#">Degree</a>
-                                 <span class="type-posts">Masters</span>
-                              </li>
+                              
                            </ul>
                         </div>
                         <div class="box">
@@ -240,7 +209,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-primary" >Kirim Lamaran</button>
+        <button type="submit" class="btn btn-primary"  >Kirim Lamaran</button>
         </form>
       </div>
     </div>

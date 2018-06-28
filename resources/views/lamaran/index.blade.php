@@ -31,17 +31,16 @@
 				    	<td>{{ $data->telepon }}</td>
 				    	<td>{{ $data->pesan }}</td>	
 				    	<td><p>{{ $data->nama_low }}</p></td>
-				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit" class="btn au-btn--green">Buka CV</button></form></td>
-				    	
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td>
 						<td>
-							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}">Edit</a>
+							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
 						</td>
 						<td>
 							<form method="post" action="{{ route('lamaran.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 				      </tr>
@@ -71,7 +70,7 @@
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->telepon }}</td>
 				    	<td>{!! str_limit($data->pesan, 20) !!}</td>
-				    	<td><embed src="{{ asset('assets/cv/'.$data->file_cv) }}" type="application/pdf" width="80%" height="150px" /></td>
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td>
 				    	<td><p>{{ $data->nama_low }}</p></td>
 				    	
 						<td>
@@ -79,7 +78,7 @@
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 				      </tr>
@@ -89,8 +88,6 @@
 				</div>
 				@endrole
 				@role('pelamar')
-				<div class="panel-heading"><a href="{{ route('lamaran.create') }}" class="au-btn au-btn-icon au-btn--green au-btn--small"> <i class="zmdi zmdi-plus"></i> Add</a>
-			  	</div>
 			  	<div class="table-responsive">
 				  <table class="table">
 				  	<thead>
@@ -111,18 +108,18 @@
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->telepon }}</td>
 				    	<td>{{ $data->pesan }}</td>
-				    	<td><embed src="{{ asset('assets/cv/'.$data->file_cv) }}" type="application/pdf" width="80%" height="150px" /></td>
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td></td>
 				    	<td><p>{{ $data->nama_low }}</p></td>
 				    	
 						<td>
-							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}">Edit</a>
+							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
 						</td>
 						<td>
 							<form method="post" action="{{ route('lamaran.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 				      </tr>

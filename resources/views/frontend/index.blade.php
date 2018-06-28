@@ -87,7 +87,7 @@
               <div class="blog-item-text">
                 <a href="#">
                   <h3>
-                   Buat Lamaran Dirimu
+                   Buat Resume Dirimu
                   </h3>
                 </a>
                 <p>

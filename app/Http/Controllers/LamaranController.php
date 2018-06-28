@@ -35,14 +35,12 @@ class LamaranController extends Controller
         ->select('lamarans.*','pelamars.file_cv','lowongans.nama_low')
         ->where('pelamars.user_id','=', Auth::user()->id)
         ->get();
-
         $lamaran_admin = DB::table('lamarans')
         ->join('pelamars','pelamars.id','=','lamarans.low_id')
         ->join('lowongans','lowongans.id','=','lamarans.low_id')
         ->select('lamarans.*','pelamars.file_cv','lowongans.nama_low')
         ->get();
-
-        return view('lamaran.index', compact('lamaran_pers','lamaran_pel','lamaran_admin'));
+        return view('lamaran.index', compact('lamaran_pers','lamaran_pel','lamaran_admin','lowongan'));
     }
 
     /**
@@ -66,7 +64,7 @@ class LamaranController extends Controller
     {
         $this->validate($request,[
             'telepon' => 'required|',
-            'pesan' => 'required|min:25',
+            'pesan' => 'required|min:20',
             'file_cv' => 'required'
         ]);
         $lar = new Lamaran;
@@ -122,7 +120,7 @@ class LamaranController extends Controller
     {
          $this->validate($request,[
             'telepon' => 'required|',
-            'pesan' => 'required|min:25',
+            'pesan' => 'required|min:20',
             'pel_id' => 'required|',
             'low_id' => 'required|'
         ]);
@@ -134,7 +132,7 @@ class LamaranController extends Controller
         $lar->save();
         Session::flash("flash_notification", [
         "level"=>"success",
-        "message"=>"Berhasil menyimpan <b>$lar->file_cv</b>"
+        "message"=>"Berhasil menyimpan <b>$lar->telepon</b>"
         ]);
         return redirect()->back();
 

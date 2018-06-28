@@ -17,7 +17,7 @@
 			  		
 			  		<div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
 			  			<label class="control-label">FileCV</label>	
-			  			<input type="file" name="file_cv" value="{{ $pel->file_cv }}"   required>
+			  			<input type="file" name="file_cv" class="form-control" value="{{ $pel->file_cv }}"   required>
 			  			@if ($errors->has('file_cv'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('file_cv') }}</strong>

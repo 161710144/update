@@ -60,21 +60,21 @@
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 				    	@endrole
 				    	
            				@role('perusahaan')
 						<td>
-							<a class="btn btn-warning" href="{{ route('lowongan.edit',$data->id) }}"><i class="fas fa-edit"></i>Edit</a>
+							<a class="btn btn-warning" href="{{ route('lowongan.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
 						</td>
 						<td>
 							<form method="post" action="{{ route('lowongan.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 						@endrole
@@ -134,14 +134,14 @@
 						</td>
 						@endif
 						 <td>
-                    		<a class="btn btn-primary" href="{{ route('lowongan.show',$data->id) }}"><i class="fas fa-eye"></i>View</a>
+                    		<a class="btn btn-primary" href="{{ route('lowongan.show',$data->id) }}"><i class="fas fa-eye"></i>Lihat</a>
                   		</td>
 						<td>
 							<form method="post" action="{{ route('lowongan.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 				    	@endrole
@@ -155,7 +155,7 @@
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 
-								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Delete</button>
+								<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 							</form>
 						</td>
 						@endrole

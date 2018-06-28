@@ -29,14 +29,14 @@
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama_kategori }}</td>
 <td>
-	<a class="btn btn-warning" href="{{ route('kategori.edit',$data->id) }}"><i class="fas fa-edit"></i>Edit</a>
+	<a class="btn btn-warning" href="{{ route('kategori.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
 </td>
 <td>
 	<form method="post" action="{{ route('kategori.destroy',$data->id) }}">
 		<input name="_token" type="hidden" value="{{ csrf_token() }}">
 		<input type="hidden" name="_method" value="DELETE">
 
-		<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Delete</button>
+		<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
 	</form>
 </td>
 				      </tr>

@@ -53,15 +53,9 @@
                         </li>
                          <li>
                         <a href="{{route('lamaran.index')}}">
-                                <i class="fas fa-copy"></i>Lamaran terkirim</a>
+                                <i class="fa fa-floppy-o"></i>Lamaran terkirim</a>
                         </li>
                         @endrole
-
-                        <li>
-
-                        
-                            </ul>
-                        </li>
                     </ul>
                 </nav>
             </div>

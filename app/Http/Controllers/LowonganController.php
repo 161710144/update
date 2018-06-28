@@ -48,7 +48,7 @@ class LowonganController extends Controller
             'tgl_mulai' => 'required|',
             'lokasi' => 'required|',
             'gaji' => 'required|',
-            'deskripsi_iklan' => 'required|',
+            'deskripsi_iklan' => 'required|min:30',
             'pers_id' => 'required|',
             'kategori_id' => 'required|'
         ]);
@@ -113,7 +113,7 @@ class LowonganController extends Controller
             'tgl_mulai' => 'required|',
             'lokasi' => 'required|',
             'gaji' => 'required|',
-            'deskripsi_iklan' => 'required|',
+            'deskripsi_iklan' => 'required|min:30',
             'pers_id' => 'required|',
             'kategori_id' => 'required|'
         ]);
