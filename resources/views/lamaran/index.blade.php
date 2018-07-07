@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+<!-- @extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -28,10 +28,10 @@
 				  		@foreach($lamaran_admin as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
-				    	<td>{{ $data->telepon }}</td>
-				    	<td>{{ $data->pesan }}</td>	
-				    	<td><p>{{ $data->nama_low }}</p></td>
-				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td>
+				    	<td>{{ $data->Pelamar->telepon }}</td>
+				    	<td>{{ $data->Pelamar->pesan }}</td>	
+				    	<td><p>{{ $data->Lowongan->nama_low }}</p></td>
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->Pelamar->file_cv }}</button></form></td>
 						<td>
 							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
 						</td>
@@ -68,10 +68,10 @@
 				  		@foreach($lamaran_pers as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
-				    	<td>{{ $data->telepon }}</td>
-				    	<td>{!! str_limit($data->pesan, 20) !!}</td>
-				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td>
-				    	<td><p>{{ $data->nama_low }}</p></td>
+				    	<td>{{ $data->Pelamar->telepon }}</td>
+				    	<td>{!! str_limit($data->Pelamar->pesan, 20) !!}</td>
+				    	<td><p>{{ $data->Lowongan->nama_low }}</p></td>
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->Pelamar->file_cv }}</button></form></td>
 				    	
 						<td>
 							<form method="post" action="{{ route('lamaran.destroy',$data->id) }}">
@@ -106,10 +106,10 @@
 				  		@foreach($lamaran_pel as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
-				    	<td>{{ $data->telepon }}</td>
-				    	<td>{{ $data->pesan }}</td>
-				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->file_cv }}</button></form></td></td>
-				    	<td><p>{{ $data->nama_low }}</p></td>
+				    	<td>{{ $data->Pelamar->telepon }}</td>
+				    	<td>{{ $data->Pelamar->pesan }}</td>
+				    	<td><p>{{ $data->Lowongan->nama_low }}</p></td>
+				    	<td><form method="get" action="{{ asset('assets/cv/'.$data->file_cv) }}" target="_blank"> <button type="submit"><i class="fa fa-chain"></i>{{ $data->Pelamar->file_cv }}</button></form></td></td>
 				    	
 						<td>
 							<a class="btn btn-warning" href="{{ route('lamaran.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
@@ -133,4 +133,4 @@
 		</div>
 	</div>
 </div>
-@endsection
+@endsection -->

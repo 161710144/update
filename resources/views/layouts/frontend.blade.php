@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Jobboard">
-    <title>LokeRed</title>
+    <title>KotaLoker</title>
     <link rel="shortcut icon" href="{{ asset('themes/jobboard-demo/assets/img/favicon.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('themes/jobboard-demo/assets/css/bootstrap.min.css') }}" type="text/css">
@@ -48,12 +48,12 @@
                     </a>
                     
                   </li>
-                  <li>
+                 <!--  <li>
                     <a class="active" href="index.html">
                     Lowongan Kerja
                     </a>
                     
-                  </li>
+                  </li> -->
                   <li>
                     
                     
@@ -61,8 +61,8 @@
                   
                 </ul>
                 <ul class="nav navbar-nav navbar-right float-right">
-                  <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> Pasang Lowongan</a></li>
-                  <li class="right"><a href="{{ route('login')}}"><i class="ti-lock"></i> Log In</a></li>
+                  <!-- <li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> Pasang Lowongan</a></li> -->
+                  <li class="right"><a href="{{ route('login')}}" target="_blank"><i class="ti-lock"></i> Log In</a></li>
                   <li class="right"><a href="{{ route('register')}}"><i class="ti-user"></i> Register</a></li>
                 </ul>
               </div>
@@ -74,6 +74,24 @@
       </section>
     </div>
     @yield('content')
+
+    <a href="#" class="back-to-top">
+<i class="ti-arrow-up"></i>
+</a>
+<div id="loading">
+<div id="loading-center">
+<div id="loading-center-absolute">
+<div class="object" id="object_one"></div>
+<div class="object" id="object_two"></div>
+<div class="object" id="object_three"></div>
+<div class="object" id="object_four"></div>
+<div class="object" id="object_five"></div>
+<div class="object" id="object_six"></div>
+<div class="object" id="object_seven"></div>
+<div class="object" id="object_eight"></div>
+</div>
+</div>
+</div>
    
     <script type="text/javascript" src="{{ asset('themes/jobboard-demo/assets/js/jquery-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('themes/jobboard-demo/assets/js/bootstrap.min.js')}}"></script>

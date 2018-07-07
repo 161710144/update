@@ -23,18 +23,13 @@ Route::group(['prefix'=>'post','middleware'=>['auth','role:admin|perusahaan|pela
 	Route::resource('kategori','KategoriLowonganController');
 	Route::resource('perusahaan','PerusahaanController');
 	Route::resource('lowongan','LowonganController');
-	// Route::resource('lamaran','LamaranController'); 
 	Route::resource('pelamar','PelamarController');
-	Route::resource('lamaran','LamaranController');
-});
-
-Route::group(['middleware'=>['auth','role:pelamar']],function(){
-Route::post('kirimlamaran','LamaranController@store');	
-Route::get('kirimlamaran/{id}',['as' => 'detail_lowongan','uses'=>'LamaranController@show']);	
-
+	// Route::resource('lamaran','LamaranController');
 });
 
 
 Route::get('/', 'FrontendController@index');
 Route::get('/detail_lowongan/{id}', 'FrontendController@detail_lowongan');
 Route::get('/konfirmasilowongan/{id}', 'LowonganController@konfirmasi_lowongan');
+Route::post('/carilowongan', 'FrontendController@cari_lowongan');
+

@@ -12,17 +12,16 @@ class CreateLamaransTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('lamarans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('telepon');
-            $table->text('pesan');
-            $table->unsignedInteger('pel_id');
-            $table->foreign('pel_id')->references('id')->on('pelamars')->onDelete('cascade');
-            $table->unsignedInteger('low_id');
-            $table->foreign('low_id')->references('id')->on('lowongans')->onDelete('cascade');
-            $table->timestamps();
-        });
+     {
+    //     Schema::create('lamarans', function (Blueprint $table) {
+    //         $table->increments('id');
+           
+    //         $table->unsignedInteger('pel_id');
+    //         $table->foreign('pel_id')->references('id')->on('pelamars')->onDelete('cascade');
+    //         $table->unsignedInteger('low_id');
+    //         $table->foreign('low_id')->references('id')->on('lowongans')->onDelete('cascade');
+    //         $table->timestamps();
+    //     });
     }
 
     /**

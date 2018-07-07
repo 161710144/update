@@ -8,37 +8,35 @@
                 <br>
                 <h2>Sederhana,cepat dan efisien </h2>
                 <div class="content">
-                  <form method="" action="">
+                  <form method="post" action="{{ url('carilowongan') }}">
+                    {{ csrf_field()}}
                     <div class="row">
                       <div class="col-md-4 col-sm-6">
                         <div class="form-group">
-                          <input class="form-control" type="text" placeholder=" kata kunci / nama perusahaan">
+                          <input class="form-control" type="text" placeholder=" kata kunci / nama lowongan" name="nama_low">
                           <i class="ti-time"></i>
                         </div>
                       </div>
                       <div class="col-md-4 col-sm-6">
                         <div class="form-group">
-                          <input class="form-control" type="email" placeholder="kota / provinsi ">
+                          <input class="form-control" type="text" placeholder="kota Indonesia " name="lokasi">
                           <i class="ti-location-pin"></i>
                         </div>
                       </div>
                       <div class="col-md-3 col-sm-6">
                         <div class="search-category-container">
                           <label class="styled-select">
-                            <select class="dropdown-product selectpicker">
+                            <select class="dropdown-product selectpicker" name="nama_kategori">
                               <option>Semua Kategori</option>
-                              <option>Keuangan</option>
-                              <option>IT & Teknik</option>
-                              <option>Seni / Desain</option>
-                              <option>Penjualan / Pemasaran</option>
-                              <option>Kesehatan</option>
-                              <option>Layanan Makanan</option>
+                              @foreach($kategori as $data)
+                              <option value="{{$data->id}}">{{$data->nama_kategori}}</option>
+                              @endforeach
                             </select>
                           </label>
                         </div>
                       </div>
                       <div class="col-md-1 col-sm-6">
-                        <button type="button" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                        <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
                       </div>
                     </div>
                   </form>
@@ -87,7 +85,7 @@
               <div class="blog-item-text">
                 <a href="#">
                   <h3>
-                   Buat Resume Dirimu
+                  Kirim Lamaran cepat
                   </h3>
                 </a>
                 <p>
@@ -183,7 +181,7 @@
           <div id="clients-scroller">
             @foreach( $perusahaan as $data)
             <div class="items">
-              <img src="{{ asset('assets/img/logopers/'.$data->logo)}}" style="max-height: 200px; max-width: 200px; margin-top: 7px" alt="">
+              <img src="{{ asset('assets/img/logopers/'.$data->logo)}}" style="max-height: 180px; max-width: 180px; margin-top: 10px;" alt="">
             </div>
             @endforeach
           </div>
@@ -211,7 +209,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="site-info text-center">
-                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="http://graygrids.com">Mexu$</a></p>
+                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="http://graygrids.com">Grayriid</a></p>
               </div>
             </div>
           </div>

@@ -6,9 +6,13 @@
   <div class="col-md-16">
     <div class="panel panel-success">
 @role('perusahaan')
- 
+      @php
+      $check_pers = App\Perusahaan::where('user_id', Auth::user()->id)->count();
+      @endphp
+      @if($check_pers == 0)
       <div class="panel-heading"><a href="{{ route('perusahaan.create') }}" class="au-btn au-btn-icon au-btn--green au-btn--small"> <i class="zmdi zmdi-plus"></i> Add</a>
       </div>
+      @endif
       <div class="row">
         <div class="col-md-12">
           <!-- DATA TABLE-->
@@ -22,7 +26,7 @@
                   <th>Deskripsi</th>
                   <th>Telepon</th>
                   <th>Username</th>
-                  <th colspan="3">Action</th>
+                  <th colspan="2">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,13 +47,6 @@
                   </td>
                   <td>
                     <a class="btn btn-primary" href="{{ route('perusahaan.show',$data->id) }}"><i class="fas fa-eye"></i>Lihat</a>
-                  </td>
-                  <td>
-                    <form method="post" action="{{ route('perusahaan.destroy',$data->id) }}">
-                      <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')"><i class="fas fa-eraser"></i>Hapus</button>
-                    </form>
                   </td>
                 </tr>
                 @endforeach	
@@ -89,9 +86,6 @@
                   <td>{{ $data->telepon }}</td>
                   <td>
                     <p>{{ $data->User->name }}</p>
-                  </td>
-                  <td>
-                    <a class="btn btn-warning" href="{{ route('perusahaan.edit',$data->id) }}"><i class="fas fa-edit"></i>Ubah</a>
                   </td>
                   <td>
                     <a class="btn btn-primary" href="{{ route('perusahaan.show',$data->id) }}"><i class="fas fa-eye"></i>Lihat</a>

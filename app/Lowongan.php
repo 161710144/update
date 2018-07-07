@@ -15,7 +15,7 @@ class Lowongan extends Model
     public function Kategori(){
         return $this->belongsto('App\Kategori_lowongan','kategori_id');
     }
-    public function Lamaran(){
-        return $this->HasOne('App\Lamaran','low_id');
+     public function Pelamar(){
+        return $this->HasOne('App\Pelamar','low_id');
     }
 }

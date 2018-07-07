@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+<!-- @extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -8,34 +8,43 @@
 			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Back</a>
 			  	</div>
 			  </div>
+			  @role('pelamar')
 			  <div class="panel-body">
 			  	<form action="{{ route('lamaran.store') }}" method="post" enctype="multipart/form-data">
 			  		{{ csrf_field() }}
+			  		<div class="form-group {{ $errors->has('telepon') ? ' has-error' : '' }}">
+			  			<label class="control-label">Telepon</label>	
+			  			<input type="text" name="telepon" class="form-control"  required>
+			  			@if ($errors->has('telepon'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('telepon') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  			<div class="form-group {{ $errors->has('pesan') ? ' has-error' : '' }}">
+			  			<label class="control-label">Pesan</label>	
+			  			<textarea type="textarea" name="pesan" class="ckeditor"  required> </textarea>
+			  			@if ($errors->has('pesan'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('pesan') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
 			  		<div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
-			  			<label class="control-label">File CV</label>	
-			  			<input type="file" name="file_cv" required>
+			  			<label class="control-label">FileCV</label>	
+			  			<input type="file" name="file_cv" class="form-control" required>
 			  			@if ($errors->has('file_cv'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('file_cv') }}</strong>
                             </span>
                         @endif
 			  		</div>
-
-			  		<div class="form-group {{ $errors->has('status') ? ' has-error' : '' }}">
-			  			<label class="control-label">Status</label>	
-			  			<input type="text" name="status" class="form-control"  required>
-			  			@if ($errors->has('status'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('status') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
-
+			  		
 			  		<div class="form-group {{ $errors->has('low_id') ? ' has-error' : '' }}">
 			  			<label class="control-label">Lowongan</label>	
-			  			<select name="low_id" class="form-control">
+			  			<select name="low_id" class="form-control" >
 			  				@foreach($low as $data)
-			  				<option value="{{ $data->id }}">{{ $data->nama_low }}</option>
+			  				<option value="{{ $data->id }}">{{ $data->nama_low}}</option>
 			  				@endforeach
 			  			</select>
 			  			@if ($errors->has('low_id'))
@@ -44,14 +53,118 @@
                             </span>
                         @endif
 			  		</div>
-			  	
 			  		<div class="form-group">
 			  			<button type="submit" class="btn btn-primary">Create</button>
 			  		</div>
 			  	</form>
 			  </div>
+			  @endrole
+
+			  @role('admin')
+			  <div class="panel-body">
+			  	<form action="{{ route('lamaran.store') }}" method="post" enctype="multipart/form-data">
+			  		{{ csrf_field() }}
+			  		<div class="form-group {{ $errors->has('telepon') ? ' has-error' : '' }}">
+			  			<label class="control-label">Telepon</label>	
+			  			<input type="text" name="telepon" class="form-control"  required>
+			  			@if ($errors->has('telepon'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('telepon') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  			<div class="form-group {{ $errors->has('pesan') ? ' has-error' : '' }}">
+			  			<label class="control-label">Pesan</label>	
+			  			<textarea type="textarea" name="pesan" class="ckeditor"  required> </textarea>
+			  			@if ($errors->has('pesan'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('pesan') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		<div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
+			  			<label class="control-label">FileCV</label>	
+			  			<input type="file" name="file_cv" class="form-control" required>
+			  			@if ($errors->has('file_cv'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('file_cv') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		
+			  		<div class="form-group {{ $errors->has('low_id') ? ' has-error' : '' }}">
+			  			<label class="control-label">Lowongan</label>	
+			  			<select name="low_id" class="form-control" >
+			  				@foreach($low as $data)
+			  				<option value="{{ $data->id }}">{{ $data->nama_low}}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('low_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('low_id') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		<div class="form-group">
+			  			<button type="submit" class="btn btn-primary">Create</button>
+			  		</div>
+			  	</form>
+			  </div>
+			  @endrole
+
+			  @role('perusahaan')
+			  <div class="panel-body">
+			  	<form action="{{ route('lamaran.store') }}" method="post" enctype="multipart/form-data">
+			  		{{ csrf_field() }}
+			  		<div class="form-group {{ $errors->has('telepon') ? ' has-error' : '' }}">
+			  			<label class="control-label">Telepon</label>	
+			  			<input type="text" name="telepon" class="form-control"  required>
+			  			@if ($errors->has('telepon'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('telepon') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  			<div class="form-group {{ $errors->has('pesan') ? ' has-error' : '' }}">
+			  			<label class="control-label">Pesan</label>	
+			  			<textarea type="textarea" name="pesan" class="ckeditor"  required> </textarea>
+			  			@if ($errors->has('pesan'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('pesan') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		<div class="form-group {{ $errors->has('file_cv') ? ' has-error' : '' }}">
+			  			<label class="control-label">FileCV</label>	
+			  			<input type="file" name="file_cv" class="form-control" required>
+			  			@if ($errors->has('file_cv'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('file_cv') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		
+			  		<div class="form-group {{ $errors->has('low_id') ? ' has-error' : '' }}">
+			  			<label class="control-label">Lowongan</label>	
+			  			<select name="low_id" class="form-control" >
+			  				@foreach($low as $data)
+			  				<option value="{{ $data->id }}">{{ $data->nama_low}}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('low_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('low_id') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+			  		<div class="form-group">
+			  			<button type="submit" class="btn btn-primary">Create</button>
+			  		</div>
+			  	</form>
+			  </div>
+			  @endrole
 			</div>	
 		</div>
 	</div>
 </div>
-@endsection
+@endsection -->

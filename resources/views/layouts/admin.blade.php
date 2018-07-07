@@ -13,7 +13,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>JobRed</title>
+    <title>Staff....</title>
     <link href="{{ asset('Bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Fontfaces CSS-->

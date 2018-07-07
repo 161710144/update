@@ -8,6 +8,7 @@ use App\User;
 use App\Lowongan;
 use File;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class PelamarController extends Controller
@@ -19,8 +20,14 @@ class PelamarController extends Controller
      */
     public function index()
     {
-        $pel = Pelamar::where('user_id', Auth::user()->id)->get();
-        return view('pelamar.index',compact('pel'));
+       $pel = Pelamar::where('user_id', Auth::user()->id)->get();
+       $pel_per = DB::table('pelamars')->join('lowongans','lowongans.id','=','pelamars.low_id')
+       ->join('perusahaans','perusahaans.id','lowongans.pers_id')
+       ->join('users','users.id','=','pelamars.user_id')
+       ->select('pelamars.*','users.email','lowongans.nama_low')
+       ->where('perusahaans.user_id', Auth::user()->id)->get();
+       $pel_admin = Pelamar::all();
+        return view('pelamar.index',compact('pel', 'pel_per','pel_admin'));
     }
 
     /**
@@ -44,13 +51,16 @@ class PelamarController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'telepon' => 'required|',
+            'pesan' => 'required|min:15',
             'file_cv' => 'required|max:10000|mimes:doc,docx,pdf'
         ]);
         $pel = new Pelamar;
-        $pel->file_cv = $request->file_cv;
+        $pel->telepon = $request->telepon;
+        $pel->pesan = $request->pesan;
         $pel->user_id = Auth::user()->id;
-        
-        $pel->save();
+        $pel->low_id = $request->low_id;
+
         Session::flash("flash_notification", [
         "level"=>"success",
         "message"=>"Berhasil menyimpan <b>$pel->telepon</b>"
@@ -63,6 +73,7 @@ class PelamarController extends Controller
             $pel->file_cv = $filename;
         }
         $pel->save();
+
         return redirect()->route('pelamar.index');
     }
 
@@ -104,12 +115,16 @@ class PelamarController extends Controller
     public function update(Request $request,$id)
     {
         $this->validate($request,[
-        
+            'telepon' => 'required|',
+            'pesan' => 'required|min:15',
             'file_cv' => 'required|max:10000|mimes:doc,docx,pdf'
+
         ]);
         $pel = Pelamar::findOrFail($id);
-        $pel->file_cv = $request->file_cv;
+        $pel->telepon = $request->telepon;
+        $pel->pesan= $request->pesan;
         $pel->user_id = Auth::user()->id;
+        $pel->low_id = $request->low_id;
         $pel->save();
         Session::flash("flash_notification", [
         "level"=>"success",

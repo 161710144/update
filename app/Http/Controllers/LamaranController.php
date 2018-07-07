@@ -20,27 +20,25 @@ class LamaranController extends Controller
      */
     public function index()
     {
-        $lamaran_pers = DB::table('lamarans')
-        ->join('pelamars','pelamars.id','=','lamarans.low_id')
-        ->join('lowongans','lowongans.id','=','lamarans.low_id')
-        ->select('lamarans.*','pelamars.file_cv','lowongans.nama_low')
-        ->where('lowongans.user_id','=', Auth::user()->id)
-        ->get();
-
-        $lowongan = Lowongan::with('Perusahaan')->where('pers_id',Auth::user()->id)->get();
-
-        $lamaran_pel = DB::table('lamarans')
-        ->join('pelamars','pelamars.id','=','lamarans.low_id')
-        ->join('lowongans','lowongans.id','=','lamarans.low_id')
-        ->select('lamarans.*','pelamars.file_cv','lowongans.nama_low')
-        ->where('pelamars.user_id','=', Auth::user()->id)
-        ->get();
-        $lamaran_admin = DB::table('lamarans')
-        ->join('pelamars','pelamars.id','=','lamarans.low_id')
-        ->join('lowongans','lowongans.id','=','lamarans.low_id')
-        ->select('lamarans.*','pelamars.file_cv','lowongans.nama_low')
-        ->get();
-        return view('lamaran.index', compact('lamaran_pers','lamaran_pel','lamaran_admin','lowongan'));
+        // $lamaran_pers = DB::table('lamarans')
+        // ->join('pelamars','pelamars.id','=','lamarans.low_id')
+        // ->join('lowongans','lowongans.id','=','lamarans.low_id')
+        // ->select('lamarans.*','pelamars.telepon','pelamars.pesan','pelamars.file_cv','lowongans.nama_low')
+        // ->where('lowongans.user_id','=', Auth::user()->id)
+        // ->get();
+        // $lowongan = Lowongan::with('Perusahaan')->where('pers_id',Auth::user()->id)->get();
+        // $lamaran_pel = DB::table('lamarans')
+        // ->join('pelamars','pelamars.id','=','lamarans.low_id')
+        // ->join('lowongans','lowongans.id','=','lamarans.low_id')
+        // ->select('lamarans.*','pelamars.telepon','pelamars.pesan','pelamars.file_cv','lowongans.nama_low')
+        // ->where('pelamars.user_id','=', Auth::user()->id)
+        // ->get();
+        // $lamaran_admin = DB::table('lamarans')
+        // ->join('pelamars','pelamars.id','=','lamarans.low_id')
+        // ->join('lowongans','lowongans.id','=','lamarans.low_id')
+        // ->select('lamarans.*','pelamars.telepon','pelamars.pesan','pelamars.file_cv','lowongans.nama_low')
+        // ->get();
+        // return view('lamaran.index', compact('lamaran_pers','lamaran_pel','lamaran_admin','lowongan'));
     }
 
     /**
@@ -51,7 +49,8 @@ class LamaranController extends Controller
     public function create()
     {
         $low = Lowongan::all();
-        return view('lamaran.create',compact('low'));
+        $pel = Pelamar::all();
+        return view('lamaran.create',compact('low','pel'));
     }
 
     /**
@@ -62,23 +61,30 @@ class LamaranController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'telepon' => 'required|',
-            'pesan' => 'required|min:20',
-            'file_cv' => 'required'
-        ]);
-        $lar = new Lamaran;
-        $lar->telepon = $request->telepon;
-        $lar->pesan = $request->pesan;
-        $lar->pel_id = $request->file_cv;
-        $lar->low_id = $request->low_id;
-        $lar->save();
+        // $this->validate($request,[
+        //     'telepon' => 'required|',
+        //     'pesan' => 'required|min:15',
+        //     'file_cv' => 'required|max:10000|mimes:doc,docx,pdf'
+        // ]);
+        $pel = new Pelamar;
+        $pel->telepon = $request->telepon;
+        $pel->pesan = $request->pesan;
+        $pel->user_id = Auth::user()->id;
+        $pel->low_id = $request->low_id;
 
-        $id = $request->low_id;
+        if ($request->hasFile('file_cv')) {
+            $file = $request->file('file_cv');
+            $filename = str_random(6).'_'.$file->getClientOriginalName();
+            $destinationPath = public_path().'/assets/cv/';
+            $uploadSucces = $file->move($destinationPath, $filename);
+            $pel->file_cv = $filename;
+        }
+        $pel->save();
 
         Session::flash("flash_notification", [
         "level"=>"success",
-        "message"=>"Berhasil menyimpan <b>$lar->telepon</b>"
+        "message"=>"Berhasil menyimpan <b>$pel->telepon</b>"
+        
         ]);
         return redirect('kirimlamaran/'.$id);
     }

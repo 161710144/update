@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">View Perusahaan  
+			  <div class="panel-heading">Lihat Perusahaan  
 			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Back</a>
 			  	</div>
 			  </div>
